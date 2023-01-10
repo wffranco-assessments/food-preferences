@@ -12,7 +12,7 @@ import { AppService } from './app.service';
       username: 'root',
       password: 'root',
       database: 'food',
-      entities: [],
+      entities: [__dirname + '/**/*entity{.ts,.js}'],
       synchronize: true,
     }),
   ],
