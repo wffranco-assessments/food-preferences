@@ -8,11 +8,11 @@ import { MealsModule } from './meals/meals.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: 'food-db',
       port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'food',
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
       entities: [__dirname + '/**/*entity{.ts,.js}'],
       synchronize: true,
     }),
