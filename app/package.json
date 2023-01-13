@@ -2,10 +2,11 @@
   "name": "app",
   "version": "0.0.0",
   "scripts": {
+    "check": "node node-check.js",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "npm run check && ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "watch": "npm run check && ng build --watch --configuration development",
     "test": "ng test"
   },
   "private": true,

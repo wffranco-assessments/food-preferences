@@ -30,6 +30,15 @@ services:
       - ./api:/home/api
     working_dir: /home/api
     command: "npm run start:dev"
+  app:
+    container_name: food-app
+    build:
+      context: app
+    ports:
+      - 4200:4200
+    volumes:
+      - ./app:/project
+      - /project/node_modules
 
 volumes:
   food-mysql:
