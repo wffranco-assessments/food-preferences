@@ -39,6 +39,14 @@ services:
     volumes:
       - ./app:/project
       - /project/node_modules
+  # nginx:
+  #   container_name: food-nginx
+  #   image: nginx:latest
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #   ports:
+  #     - 80:80
+  #     # - 4200:80
 
 volumes:
   food-mysql:

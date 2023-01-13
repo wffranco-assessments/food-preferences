@@ -4,7 +4,7 @@
   "scripts": {
     "check": "node node-check.js",
     "ng": "ng",
-    "start": "npm run check && ng serve",
+    "start": "ng serve --host 0.0.0.0 --disableHostCheck",
     "build": "ng build",
     "watch": "npm run check && ng build --watch --configuration development",
     "test": "ng test"
