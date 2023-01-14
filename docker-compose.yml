@@ -17,7 +17,8 @@ services:
       - 'food-mysql:/var/lib/mysql'
   api:
     container_name: food-api
-    image: 'node:slim'
+    build:
+      context: node
     expose:
       - 3000
     ports:
@@ -27,18 +28,17 @@ services:
       DB_USERNAME: '${DB_USERNAME}'
       DB_PASSWORD: '${DB_PASSWORD}'
     volumes:
-      - ./api:/home/api
-    working_dir: /home/api
+      - ./api:/project
     command: "npm run start:dev"
   app:
     container_name: food-app
     build:
-      context: app
+      context: node
     ports:
       - 4200:4200
     volumes:
       - ./app:/project
-    command: "npm run start"
+    # command: "npm run watch"
   # nginx:
   #   container_name: food-nginx
   #   image: nginx:latest
