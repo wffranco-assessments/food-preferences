@@ -38,7 +38,7 @@ services:
       - 4200:4200
     volumes:
       - ./app:/project
-      - /project/node_modules
+    command: "npm run start"
   # nginx:
   #   container_name: food-nginx
   #   image: nginx:latest
