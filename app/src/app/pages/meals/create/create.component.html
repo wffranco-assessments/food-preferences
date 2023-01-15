@@ -1,0 +1,28 @@
+<div>
+  <div class="flex content-center justify-between">
+    <h1 class="font-bold text-blue-800 text-3xl my-2">Create Meal</h1>
+    <div class="flex flex-col justify-center">
+      <a routerLink=".." class="bg-blue-900 text-white px-2 py-1 rounded">Back to list</a>
+    </div>
+  </div>
+  <div class="flex flex-col">
+    <form #f="ngForm" (ngSubmit)="submit(f)" novalidate>
+      <div class="form-group m-2">
+        <label for="name" class="form-label inline-block mb-2 text-gray-700">Name</label>
+        <input id="name" name="name" type="text" placeholder="Enter name" ngModel required #first="ngModel" autofocus class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+        {{ f.value.name }}
+      </div>
+      <div class="form-group m-2">
+        <label for="slug" class="form-label inline-block mb-2 text-gray-700">Slug</label>
+        <input id="slug" name="slug" type="text" placeholder="Enter slug" ngModel required class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+        {{ f.value.slug }}
+      </div>
+      <div class="form-group m-2">
+        <label for="tags" class="form-label inline-block mb-2 text-gray-700">Tags</label>
+        <input id="tags" name="tags" type="text" placeholder="Enter tags" ngModel required class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+        {{ f.value.tags }}
+      </div>
+      <button class="bg-blue-900 text-white px-2 py-1 rounded">Submit</button>
+    </form>
+  </div>
+</div>
