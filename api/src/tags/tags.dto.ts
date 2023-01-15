@@ -1,5 +1,5 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { IsOptional, IsString, Length } from 'class-validator';
+import { IsString, Length } from 'class-validator';
 
 export class CreateTag {
   @Length(2, 100)
@@ -7,9 +7,8 @@ export class CreateTag {
   @ApiProperty()
   name!: string;
 
-  @Length(2)
+  @Length(0, 2)
   @IsString()
-  @IsOptional()
   lang?: string;
 }
 
