@@ -10,7 +10,7 @@ import { map } from 'rxjs';
 const base_path = 'http://localhost:3000';
 
 @Injectable()
-export class HttpService<T> {
+export class CrudService<T> {
   uri = '';
 
   constructor(public http: HttpClient) {}
