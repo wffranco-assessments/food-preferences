@@ -1,0 +1,32 @@
+table {
+  @apply min-w-full border;
+  th, td {
+    @apply px-6 py-4 text-sm font-medium;
+    &.options {
+      @apply w-24;
+    }
+  }
+  thead {
+    @apply bg-blue-900;
+    th {
+      @apply text-white text-left;
+
+    }
+  }
+  tbody {
+    tr {
+      @apply border-t;
+      td {
+        @apply whitespace-nowrap text-gray-900;
+
+        &.options {
+          @apply flex flex-wrap content-center justify-around gap-1;
+
+          svg.icon {
+            @apply h-5 w-5 fill-blue-800;
+          }
+        }
+      }
+    }
+  }
+}

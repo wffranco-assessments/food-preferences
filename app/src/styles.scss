@@ -3,3 +3,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  h1.title {
+    @apply font-bold text-blue-800 text-3xl;
+  }
+}
