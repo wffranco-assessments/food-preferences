@@ -4,7 +4,7 @@ import { Meal } from '../meals.interfaces';
 import { MealsService } from '../meals.service';
 
 @Component({
-  selector: 'app-list',
+  selector: 'app-list-meals',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
 })
