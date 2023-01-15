@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { TagsModule } from './pages/tags/tags.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -16,6 +17,7 @@ import { HeaderComponent } from './shared/header/header.component';
     CommonModule,
     FormsModule,
     HttpClientModule,
+    TagsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
