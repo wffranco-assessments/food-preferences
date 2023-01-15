@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from 'src/app/shared/HttpService';
+import { CrudService } from 'src/app/shared/HttpService';
 import { Meal } from './meals.interfaces';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MealsService extends HttpService<Meal> {
+export class MealsService extends CrudService<Meal> {
   override uri = 'meals';
 }
