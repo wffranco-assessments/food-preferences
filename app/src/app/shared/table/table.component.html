@@ -1,0 +1,39 @@
+<div>
+  <div class="flex content-center justify-between">
+    <h1 class="font-bold text-blue-800 text-3xl my-2">{{ title || 'List' }}</h1>
+    <div class="flex flex-col justify-center">
+      <a routerLink="./create" class="bg-blue-900 text-white px-2 py-1 rounded">Create</a>
+    </div>
+  </div>
+  <div class="flex flex-col overflow-hidden">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="overflow-x-auto">
+          <table class="min-w-full border">
+            <thead class="bg-blue-900">
+              <tr>
+                <th *ngFor="let header of headers" scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+                  {{ capitalize(header[1] || header[0]) }}
+                </th>
+                <th scope="col" class="text-sm text-center font-medium text-white px-6 py-4 text-left">
+                  Options
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of items" class="border-t">
+                <td *ngFor="let header of headers" class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  {{ format(item[header[0]]) }}
+                </td>
+                <td class="flex flex-wrap content-center justify-around px-6 py-4 gap-1">
+                  <a [routerLink]="edit(item['id'])" class="text-blue-800 font-bold underline">Edit</a>
+                  <button (click)="delete(item['id'])" class="text-blue-800 font-bold underline">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
