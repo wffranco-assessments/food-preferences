@@ -9,11 +9,11 @@ import { TagsService } from '../tags.service';
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent implements OnInit {
-  langs?: string[][];
-  loading = false;
-  tag: Tag = {
+  input: Tag = {
     name: '',
   };
+  langs?: string[][];
+  loading = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,13 +24,23 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     this.langs = this.tagsService.getLangs();
     this.loading = true;
-    this.route.paramMap.subscribe((params) => {
-      const id = params.get('id');
-      if (id) {
-        this.tagsService.get(parseInt(id)).subscribe((tag) => {
-          this.tag = tag;
-        });
-      }
+    this.route.paramMap.subscribe({
+      next: (params) => {
+        const id = params.get('id');
+        if (id) {
+          this.tagsService.get(parseInt(id)).subscribe({
+            next: (tag) => {
+              this.input = tag;
+            },
+            complete: () => {
+              this.loading = false;
+            },
+          });
+        }
+      },
+      error: () => {
+        this.loading = false;
+      },
     });
   }
 
@@ -40,8 +50,7 @@ export class EditComponent implements OnInit {
 
   submit(id?: number) {
     if (id) {
-      this.tagsService.put(id, this.tag).subscribe((res) => {
-        console.log({ res });
+      this.tagsService.put(id, this.input).subscribe(() => {
         this.backToList();
       });
     }
