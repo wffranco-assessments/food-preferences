@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { TagsModule } from './pages/tags/tags.module';
 import { SuggestionsComponent } from './pages/suggestions/suggestions.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, SuggestionsComponent],
@@ -19,6 +20,7 @@ import { SuggestionsComponent } from './pages/suggestions/suggestions.component'
     FormsModule,
     HttpClientModule,
     TagsModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

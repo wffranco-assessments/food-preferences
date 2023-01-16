@@ -1,14 +1,19 @@
-<div>
-  <div class="flex content-center justify-between">
-    <h1 class="font-bold text-blue-800 text-3xl my-2">Get Suggestions</h1>
-  </div>
+<div class="flex flex-col gap-5">
   <form (submit)="submit()" ngNativeValidate>
-    <div class="flex flex-col gap-4">
-      <div class="form-group">
-        <label for="name" class="form-label inline-block mb-2 text-gray-700">Name</label>
-        <input id="name" name="name" type="text" placeholder="Enter name" [(ngModel)]="input" required #first="ngModel" autofocus class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
-      </div>
-      <button class="bg-blue-900 text-white px-2 py-1 rounded">Submit</button>
+    <div class="flex content-center justify-between">
+      <h1 class="font-bold text-blue-800 text-3xl my-2">Get Suggestions</h1>
+    </div>
+    <div class="form-group flex">
+      <input id="search" name="search" type="text" placeholder="Enter search" [(ngModel)]="input" required #first="ngModel" autofocus class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-l transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+      <button class="bg-blue-900 text-white px-4 py-1 rounded-r">
+        <svg class="icon" viewBox="0 -8 72 72">
+          <path d="M58.73,44.35l-11-11a21.26,21.26,0,0,1-6.37,6.37l11,11a4.51,4.51,0,0,0,6.38-6.38Z"/>
+          <path d="M48,22A18,18,0,1,0,30,40,18,18,0,0,0,48,22ZM30,35.52A13.53,13.53,0,1,1,43.52,22,13.55,13.55,0,0,1,30,35.52Z"/>
+          <path d="M19.47,22h3A7.52,7.52,0,0,1,30,14.47v-3A10.53,10.53,0,0,0,19.47,22Z"/>
+        </svg>
+      </button>
     </div>
   </form>
+  <app-table title="Meals" [items]="meals" [hide]="['header', 'options']" rows="id,name,tags" />
 </div>
+
