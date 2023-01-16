@@ -5,10 +5,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { ListComponent } from './list/list.component';
-import { ShowComponent } from './show/show.component';
 
 @NgModule({
-  declarations: [CreateComponent, EditComponent, ListComponent, ShowComponent],
+  declarations: [CreateComponent, EditComponent, ListComponent],
   imports: [MealsRoutingModule, SharedModule],
 })
 export class MealsModule {}
