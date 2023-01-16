@@ -31,3 +31,6 @@ https://www.loom.com/share/4268f3ecfd264dafbd9fff37fa79b4c2
 
 ### Suggestions App
 https://www.loom.com/share/72de152c9b53460bbf4739c43ed322e5
+
+### Meals: Tags suggestions (create/edit)
+https://www.loom.com/share/e5556af5fb004f13885e380f5b91efa4
