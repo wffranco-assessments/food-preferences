@@ -8,4 +8,8 @@
   h1.title {
     @apply font-bold text-blue-800 text-3xl;
   }
+
+  .badge {
+    @apply flex gap-1 cursor-pointer rounded-full py-1 px-2 text-xs leading-5;
+  }
 }
