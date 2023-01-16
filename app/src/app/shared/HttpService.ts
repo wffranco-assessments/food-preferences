@@ -13,40 +13,58 @@ const base_path = 'http://localhost:3000';
 export class CrudService<T> {
   uri = '';
 
-  constructor(public http: HttpClient) {}
+  constructor(private _http: HttpClient) {}
+
+  /** Enable get|post|put|delete Requests, and unwrap response ({ data: result } -> result). */
+  get http() {
+    return {
+      get: <U extends T | T[]>(url: Uri, options?: Options) =>
+        this._http
+          .get<Data<U>>(parseUrl(base_path, this.uri, url), options)
+          .pipe(map<Data<U>, U>(({ data }) => data)),
+      post: (url: Uri, body: any, options?: Options) =>
+        this._http
+          .post<Data<T>>(parseUrl(base_path, this.uri, url), body, options)
+          .pipe(map<Data<T>, T>(({ data }) => data)),
+      put: (url: Uri, body: any, options?: Options) =>
+        this._http
+          .put<Data<T>>(parseUrl(base_path, this.uri, url), body, options)
+          .pipe(map<Data<T>, T>(({ data }) => data)),
+      delete: (url: Uri, options?: Options) =>
+        this._http.delete(parseUrl(base_path, this.uri, url), options),
+    };
+  }
 
   getMany(options?: Options) {
-    return this.http
-      .get<Data<T[]>>(`${base_path}/${this.uri}`, options)
-      .pipe(map<Data<T[]>, T[]>(({ data }) => data));
+    return this.http.get<T[]>('', options);
   }
 
-  get(id: number | Options, options?: Options) {
-    return this.http
-      .get<Data<T>>(`${base_path}/${this.uri}/${id}`, options)
-      .pipe(map<Data<T>, T>(({ data }) => data));
+  get(id: number, options?: Options) {
+    return this.http.get<T>(id, options);
   }
 
-  post(body: any | null, options?: Options) {
-    return this.http
-      .post<Data<T>>(`${base_path}/${this.uri}`, body, options)
-      .pipe(map<Data<T>, T>(({ data }) => data));
+  post(body?: any, options?: Options) {
+    return this.http.post('', body, options);
   }
 
-  put(id: number, body: any | null, options?: Options) {
-    return this.http
-      .put<Data<T>>(`${base_path}/${this.uri}/${id}`, body, options)
-      .pipe(map<Data<T>, T>(({ data }) => data));
+  put(id: number, body?: any, options?: Options) {
+    return this.http.put(id, body, options);
   }
 
   delete(id: number, options?: Options) {
-    return this.http.delete(`${base_path}/${this.uri}/${id}`, options);
+    return this.http.delete(id, options);
   }
 }
 
-interface Data<T> {
+const parseUrl = (...p: any[]) => p.filter((el) => el || el === 0).join('/');
+
+export interface Data<T> {
   data: T;
 }
+
+/** url string or id number */
+export type Uri = string | number;
+export type Method = 'get' | 'post' | 'put' | 'delete';
 
 export type Options = {
   headers?:
