@@ -1,7 +1,7 @@
 <div>
-  <div class="flex content-center justify-between">
-    <h1 class="font-bold text-blue-800 text-3xl my-2">{{ title || 'List' }}</h1>
-    <div class="flex flex-col justify-center">
+  <div *ngIf="!hide.includes('header')" class="flex content-center justify-between">
+    <h1 *ngIf="!hide.includes('title')" class="font-bold text-blue-800 text-3xl my-2">{{ title || 'List' }}</h1>
+    <div *ngIf="!hide.includes('create')" class="flex flex-col justify-center">
       <a routerLink="./create" class="bg-blue-900 text-white px-2 py-1 rounded">Create</a>
     </div>
   </div>
@@ -15,7 +15,7 @@
                 <th *ngFor="let header of headers" scope="col">
                   {{ capitalize(header[1] || header[0]) }}
                 </th>
-                <th scope="col" class="options">
+                <th *ngIf="!hide.includes('options')" scope="col" class="options">
                   Options
                 </th>
               </tr>
@@ -25,7 +25,7 @@
                 <td *ngFor="let header of headers">
                   {{ format(item[header[0]]) }}
                 </td>
-                <td class="options">
+                <td *ngIf="!hide.includes('options')" class="options">
                   <a [routerLink]="edit(item['id'])" title="Edit">
                     <svg class="icon" viewBox="0 0 70 70">
                       <g>

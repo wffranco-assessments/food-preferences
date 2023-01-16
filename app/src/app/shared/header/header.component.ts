@@ -6,9 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  menu = false;
-
-  toggle() {
-    this.menu = !this.menu;
-  }
+  menu = {
+    left: [
+      { title: 'Sugestions', link: '/' },
+      { title: 'Meals', link: '/meals' },
+      { title: 'Tags', link: '/tags' },
+    ],
+  };
 }

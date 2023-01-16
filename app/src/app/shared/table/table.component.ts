@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent {
+  @Input() hide: string[] = [];
   @Input() items: Item[] = [];
   @Input() rows: Entries = [];
   @Input() title = '';
@@ -16,7 +17,10 @@ export class TableComponent {
   constructor(private datePipe: DatePipe) {}
 
   get headers() {
-    if (this.rows instanceof Array) {
+    if (typeof this.rows === 'string') {
+      const rows = this.rows.split(/[\s,]+/);
+      if (rows.length) return rows.map((item) => item.split(':'));
+    } else if (this.rows instanceof Array) {
       if (this.rows.length) {
         return this.rows.map((item) => (item instanceof Array ? item : [item]));
       }
@@ -52,7 +56,7 @@ export class TableComponent {
   }
 }
 
-type Entries = string[] | string[][] | { [k: string]: string };
+type Entries = string | string[] | string[][] | { [k: string]: string };
 
 interface Item {
   [k: string]: any;
