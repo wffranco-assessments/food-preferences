@@ -40,4 +40,10 @@ export class MealsController {
   deleteOne(@Param('id') id: number) {
     return this.mealsService.deleteOne(id);
   }
+
+  @Get('find/:find')
+  async find(@Param('find') find: string) {
+    const search = find.split(/[,\s]+/);
+    return await this.mealsService.find(search);
+  }
 }

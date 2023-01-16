@@ -1,7 +1,10 @@
-import { Injectable } from '@nestjs/common';
-import { NotFoundException } from '@nestjs/common/exceptions';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Raw, Repository } from 'typeorm';
 import { CreateMeal, EditMeal } from './meals.dto';
 import { Meal } from './meals.entity';
 
@@ -25,13 +28,18 @@ export class MealsService {
   }
 
   async createOne(dto: CreateMeal) {
+    dto.tags = dto.tags.filter((tag) => tag.length > 2);
+
     const meal = await this.meal.create(dto);
     const data = await this.meal.save(meal);
+    if (!data) throw new InternalServerErrorException();
 
     return { data };
   }
 
   async editOne(id: number, dto: EditMeal) {
+    if (dto.tags) dto.tags = dto.tags.filter((tag) => tag.length > 2);
+
     const meal = await this.meal.findOneBy({ id });
     if (!meal) throw new NotFoundException();
 
@@ -45,6 +53,22 @@ export class MealsService {
     const data = await this.meal.delete(id);
     if (!data?.affected) throw new NotFoundException();
 
+    return { data };
+  }
+
+  async find(search: string[]) {
+    const words = search.filter((word) => word.length > 2);
+    const data = await this.meal.find({
+      where: [
+        {
+          tags: Raw((alias) =>
+            words
+              .map((word) => `FIND_IN_SET('${word}', ${alias})`)
+              .join(' AND '),
+          ),
+        },
+      ],
+    });
     return { data };
   }
 }
