@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateTag, EditTag } from './tags.dto';
@@ -26,6 +30,7 @@ export class TagsService {
   async createOne(dto: CreateTag) {
     const meal = await this.tag.create(dto);
     const data = await this.tag.save(meal);
+    if (!data) throw new InternalServerErrorException();
 
     return { data };
   }
