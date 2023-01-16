@@ -12,4 +12,16 @@
   .badge {
     @apply flex gap-1 cursor-pointer rounded-full py-1 px-2 text-xs leading-5;
   }
+
+  .btn {
+    @apply px-2 py-1 rounded;
+    &.primary {
+      &:not([disabled]) {
+        @apply bg-blue-900 text-white cursor-pointer hover:bg-blue-800;
+      }
+      &[disabled] {
+        @apply bg-gray-500 text-white;
+      }
+    }
+  }
 }
