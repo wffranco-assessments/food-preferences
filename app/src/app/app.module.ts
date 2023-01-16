@@ -8,9 +8,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { TagsModule } from './pages/tags/tags.module';
+import { SuggestionsComponent } from './pages/suggestions/suggestions.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, SuggestionsComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
