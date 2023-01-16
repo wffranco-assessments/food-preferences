@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { TagsService } from '../../tags/tags.service';
 import { Meal } from '../meals.interfaces';
-import { MealsService } from '../meals.service';
+import { MealsService, mergeTags } from '../meals.service';
 
 @Component({
   selector: 'app-create',
@@ -16,10 +16,11 @@ export class CreateComponent implements OnInit {
     slug: '',
     tags: [],
   };
+  submiting = false;
 
   private _suggestions: string[] = [];
   get suggestions() {
-    return this._suggestions;
+    return this._suggestions.filter((tag) => !this.input.tags.includes(tag));
   }
 
   private _tag = '';
@@ -27,19 +28,7 @@ export class CreateComponent implements OnInit {
     return this._tag;
   }
   set tag(value: string) {
-    if (!/\s$/.test(value)) {
-      this._tag = value.trim();
-    } else {
-      this._tag = '';
-      const tags = value.trim();
-      if (tags) {
-        tags.split(/\s+/).forEach((tag) => {
-          if (!this.input.tags.find((t) => t === tag)) {
-            this.input.tags = [...this.input.tags, tag];
-          }
-        });
-      }
-    }
+    this._tag = mergeTags(this.input, value);
   }
 
   get tagField() {

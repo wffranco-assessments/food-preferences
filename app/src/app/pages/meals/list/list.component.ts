@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { tap } from 'rxjs';
 import { Meal } from '../meals.interfaces';
 import { MealsService } from '../meals.service';
 
@@ -14,19 +13,18 @@ export class ListComponent {
   meals: Meal[] = [];
 
   ngOnInit(): void {
-    this.mealsService
-      .getMany()
-      .pipe(
-        tap((meals) => {
-          this.meals = meals;
-        }),
-      )
-      .subscribe();
+    this.load();
+  }
+
+  load() {
+    this.mealsService.getMany().subscribe((meals) => {
+      this.meals = meals;
+    });
   }
 
   delete(id: number) {
-    console.log({ id });
-    // this.mealsService.delete(id);
-    // alert(`delete ${id} meal`);
+    this.mealsService.delete(id).subscribe(() => {
+      this.load();
+    });
   }
 }
