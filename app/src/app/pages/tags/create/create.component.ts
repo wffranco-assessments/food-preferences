@@ -25,9 +25,7 @@ export class CreateComponent {
   }
 
   submit(form: NgForm) {
-    console.log(form.value);
-    this.tagsService.post(form.value).subscribe((res) => {
-      console.log({ res });
+    this.tagsService.post(form.value).subscribe(() => {
       this.backToList();
     });
   }
