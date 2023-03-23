@@ -1,5 +1,7 @@
 # food-preferences
 
+[![Security Status](https://www.murphysec.com/platform3/v3/badge/1619249945505214464.svg)](https://www.murphysec.com/accept?code=3b082fa1ff4d5037e7ff8ba98d029ac2&type=1&from=2&t=2)
+
 To run the project, you should have installed:
 
 - git (to clone the project)
